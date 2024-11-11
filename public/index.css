@@ -1,0 +1,27 @@
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--0: #242a2e;
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: #d6dee0;
+
+  --color-1: #282c40;
+  --color-2: #8a7ed9;
+  --color-3: #4946a6;
+  --color-4: #3c4973;
+  --color-5: #6f92bf;
+  --color-6: #f2f2f2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: var(--color-1);
+}
