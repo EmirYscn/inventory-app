@@ -2,7 +2,7 @@
   --color-brand--1: #ffb545;
   --color-brand--2: #00c46a;
 
-  --color-dark--0: #242a2e;
+  --color-dark--0: #131516;
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
   --color-light--1: #aaa;
@@ -16,12 +16,159 @@
   --color-5: #6f92bf;
   --color-6: #f2f2f2;
 }
+@font-face {
+  font-family: "Filetto";
+  src: url("/fonts/filetto_regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Filetto";
+  src: url("/fonts/filetto_bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Filetto";
+  src: url("/fonts/filetto_extralight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "altehaasgrotesk";
+  src: url("/fonts/altehaasgroteskbold.tff") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "altehaasgrotesk";
+  src: url("/fonts/altehaasgroteskregular.tff") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
 }
 html {
-  background-color: var(--color-1);
+  background-color: black;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  /* padding: 2em; */
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  column-gap: 2em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+}
+nav .logo img {
+  height: 3em;
+}
+nav .links {
+  display: flex;
+  gap: 1.5em;
+  font-size: 1.2em;
+}
+nav .actions img {
+  height: 2em;
+}
+nav .actions {
+  display: flex;
+  gap: 1.5em;
+}
+nav button {
+  border-style: none;
+  background-color: #13151600;
+}
+header {
+  text-align: center;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+header p:nth-child(1) {
+  font-size: 4em;
+  font-weight: bold;
+}
+
+header p:nth-child(2) {
+  font-size: 1.5em;
+}
+
+.main {
+  background-image: url("/images/homepage-image.jpg"); /* Change to the correct path of your image */
+  background-size: cover; /* Adjusts the image size to cover the element */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Ensures no repetition of the image */
+  width: 100%; /* Make sure the element has width */
+  height: 500px; /* Or any height to make it visible */
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  padding: 2em;
+  gap: 1em;
+}
+
+footer .footer-columns {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  border-top: 2px solid rgba(48, 52, 54, 0.1);
+  border-bottom: 2px solid rgba(48, 52, 54, 0.1);
+}
+
+footer .footer-columns div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 1em;
+}
+footer .footer-columns div ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+footer .footer-columns div ul li {
+  color: rgb(168, 160, 149);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+footer .copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer img {
+  height: 3em;
 }
