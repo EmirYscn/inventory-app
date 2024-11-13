@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/dashboard.css" />
+
+    <script src="/scripts/delete.js" defer></script>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <%- include("partials/nav.ejs") %>
+    <main>
+      <aside>
+        <h1>Inventory</h1>
+        <ul>
+          <a href="/dashboard"><li>Dashboard</li></a>
+        </ul>
+        <h2>Categories</h2>
+        <ul>
+          <% categories.forEach(category => { %>
+          <a href="/dashboard/category/<%=category.id%>">
+            <li><%= category.category %></li>
+          </a>
+          <% }) %>
+        </ul>
+        <h2>Manufacturers</h2>
+        <ul>
+          <% manufacturers.forEach(manufacturer => { %>
+          <a href="/dashboard/manufacturer/<%=manufacturer.id%>">
+            <li><%= manufacturer.name %></li>
+          </a>
+          <% }) %>
+        </ul>
+      </aside>
+      <div class="items">
+        <% items.forEach(item => { %>
+        <div class="item">
+          <img src="<%=item.image%>" alt="" />
+          <p><%=item.title%></p>
+          <p>$<%=item.price%>*</p>
+          <div class="item-actions">
+            <a href="/dashboard/edit/<%=item.id%>"><button>Edit</button></a>
+            <button onclick="deleteItem('<%= item.id %>')">
+              <img src="/icons/delete.svg" alt="" />
+            </button>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+</html>

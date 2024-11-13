@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "altehaasgrotesk";
+  src: url("/fonts/altehaasgroteskbold.tff") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "altehaasgrotesk";
+  src: url("/fonts/altehaasgroteskregular.tff") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
+body {
+  background-color: black;
+}
+
+nav {
+  display: flex;
+  column-gap: 2em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+}
+nav .logo img {
+  height: 3em;
+}
+nav .links {
+  display: flex;
+  gap: 1.5em;
+  font-size: 1.2em;
+}
+nav .actions img {
+  height: 2em;
+}
+nav .actions {
+  display: flex;
+  gap: 1.5em;
+}
+nav button {
+  border-style: none;
+  background-color: #13151600;
+}
+
+main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+aside {
+  /* padding: 2em; */
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.406);
+}
+
+aside h1 {
+  padding-inline: 30px;
+  padding-block: 10px;
+}
+
+aside h2 {
+  padding-inline: 30px;
+  padding-block: 10px;
+}
+
+aside ul {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.5em; */
+}
+aside ul li {
+  padding: 8px;
+  padding-left: 40px;
+  text-transform: capitalize;
+}
+
+aside ul li:hover {
+  background-color: rgba(255, 255, 255, 0.312);
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(auto, 350px));
+  gap: 3em;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.item img {
+  width: 100%;
+}
+.item button {
+  width: 100%;
+  border-style: none;
+  background-color: #13151600;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.item button:hover {
+  background-color: rgba(255, 255, 255, 0.312);
+  transform: scale(1.05);
+}
+
+.item-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.item-actions img {
+  height: 1em;
+}
