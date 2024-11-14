@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/itemPage.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("partials/nav.ejs") %> <%- include("partials/categoryNav.ejs")
+    %>
+    <main>
+      <div class="item">
+        <img src="<%=item.image%>" alt="" />
+        <div class="item-info">
+          <h3><%=item.title%></h3>
+          <div class="item-price">
+            <p>$<%=item.price%>*</p>
+            <p>Prices incl. VAT plus shipping costs</p>
+          </div>
+          <div class="item-options">
+            <% item.options.forEach(element => { %>
+            <h4><%=element.optionType%></h4>
+            <div class="option-buttons">
+              <% element.choices.forEach(el => { %>
+              <button><%=el%></button>
+              <% }) %>
+            </div>
+            <% }) %>
+          </div>
+          <button class="cart-button">Add to shopping cart</button>
+          <div class="product-info">
+            <h4>Product Number: <%=item.product_number %></h4>
+            <h4>Manufacturer: <%=item.name %></h4>
+            <div class="product-description">
+              <h4>Description</h4>
+              <p><%=item.description%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

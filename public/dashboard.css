@@ -103,6 +103,73 @@ aside ul li:hover {
   background-color: rgba(255, 255, 255, 0.312);
 }
 
+.item-nav {
+  padding: 2em;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.dashboard-info {
+  display: flex;
+  gap: 1em;
+}
+
+.dashboard-info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  font-size: 1.2em;
+
+  color: white;
+  padding: 1em 5em 1em 1em;
+  border-radius: 12px;
+  box-shadow: rgba(194, 193, 193, 0.24) 0px 3px 8px;
+  transition: all 0.5s;
+}
+
+.dashboard-info > div:hover {
+  transform: scale(1.04);
+}
+.dashboard-info .total-categories {
+  background-color: rgba(239, 10, 10, 0.695);
+}
+
+.dashboard-info .total-items {
+  background-color: rgba(10, 155, 239, 0.695);
+}
+
+.dashboard-info button {
+  border-style: none;
+  background-color: rgba(239, 10, 10, 0);
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.dashboard-actions {
+  display: flex;
+  align-items: start;
+  gap: 1em;
+}
+
+.dashboard-actions button {
+  border-style: none;
+  background-color: rgba(10, 239, 94, 0.757);
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 1em 2em;
+  border-radius: 6px;
+  box-shadow: rgba(194, 193, 193, 0.24) 0px 3px 8px;
+  transition: all 0.2s;
+}
+
+.dashboard-actions button:active {
+  transform: translateX(2px) translateY(2px);
+}
+
 .items {
   display: grid;
   grid-template-columns: repeat(4, minmax(auto, 350px));
@@ -117,6 +184,7 @@ aside ul li:hover {
 
 .item img {
   width: 100%;
+  border-radius: 4px;
 }
 .item button {
   width: 100%;
@@ -141,4 +209,171 @@ aside ul li:hover {
 
 .item-actions img {
   height: 1em;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  padding: 2em;
+  gap: 1em;
+}
+
+footer .footer-columns {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  border-top: 2px solid rgba(48, 52, 54, 0.1);
+  border-bottom: 2px solid rgba(48, 52, 54, 0.1);
+}
+
+footer .footer-columns div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 1em;
+}
+footer .footer-columns div ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+footer .footer-columns div ul li {
+  color: rgb(168, 160, 149);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+footer .copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer img {
+  height: 3em;
+}
+
+/* General Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Place on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content * {
+  color: black;
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 10% auto; /* Center vertically and horizontally */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Button Styles */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* Form Styling */
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="number"],
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.modal-actions button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#confirm-button {
+  background-color: #28a745;
+  color: white;
+}
+
+#confirm-button:hover {
+  background-color: #218838;
+}
+
+#cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+#cancel-button:hover {
+  background-color: #c82333;
+}
+
+.conditional-input {
+  display: none; /* Hide by default */
 }

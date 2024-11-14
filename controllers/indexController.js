@@ -77,3 +77,71 @@ exports.deleteItem = async (req, res, next) => {
     });
   }
 };
+
+exports.getItemsByCategory = async (req, res, next) => {
+  const { itemType } = req.params;
+
+  try {
+    const doc = await db.getItems(itemType);
+    res.render("categoryItems", {
+      items: doc,
+      category: itemType,
+      routes: [itemType],
+    });
+    // res.status(200).json({
+    //   status: "success",
+    //   data: {
+    //     data: doc,
+    //   },
+    // });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+    });
+  }
+};
+
+exports.getItem = async (req, res, next) => {
+  const { itemType, id } = req.params;
+  console.log(itemType, id);
+  try {
+    let doc = await db.getItem(id);
+    doc = doc[0];
+    doc["options"] = [];
+    optionChoices = [
+      "plies",
+      "concave",
+      "width",
+      "base",
+      "hanger",
+      "wheel_colors",
+    ];
+
+    optionChoices.forEach((element) => {
+      if (doc[element] !== null) {
+        doc["options"].push({ optionType: element, choices: doc[element] });
+      }
+    });
+
+    console.log(doc);
+    res.render("itemPage", {
+      item: doc,
+      routes: [itemType, doc.title],
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+    });
+  }
+};
+
+exports.createItem = async (req, res, next) => {
+  try {
+    await db.createItem(req.body);
+    return res.redirect("/dashboard");
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+    });
+  }
+};

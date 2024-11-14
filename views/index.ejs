@@ -7,32 +7,7 @@
     <title>Inventory App</title>
   </head>
   <body>
-    <nav>
-      <div class="logo">
-        <a href="/">
-          <img src="/images/logo-blackriver.png" alt="" />
-        </a>
-      </div>
-      <div class="links">
-        <a href="/">Home</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/fingerboards">Fingerboards</a>
-        <a href="/trucks">Trucks</a>
-        <a href="/wheels">Wheels</a>
-        <a href="/tapes">Tapes</a>
-      </div>
-      <div class="actions">
-        <button>
-          <img src="/icons/search.svg" alt="" />
-        </button>
-        <button>
-          <img src="/icons/user.svg" alt="" />
-        </button>
-        <button>
-          <img src="/icons/bag.svg" alt="" />
-        </button>
-      </div>
-    </nav>
+    <%- include("partials/nav.ejs") %>
     <header>
       <p>Copy the magic of skateboarding</p>
       <p>
@@ -41,66 +16,6 @@
       </p>
     </header>
     <div class="main"></div>
-    <footer>
-      <div class="footer-columns">
-        <div class="products">
-          <h4>PRODUCTS</h4>
-          <ul>
-            <li>Hardware</li>
-            <li>Ramps</li>
-            <li>Rails</li>
-            <li>Parks</li>
-            <li>Skateboards</li>
-            <li>Clothing</li>
-            <li>Accessories</li>
-          </ul>
-        </div>
-        <div class="company-info">
-          <h4>COMPANY INFO</h4>
-          <ul>
-            <li>About us</li>
-            <li>Team</li>
-            <li>Blackriver Pirate Crew</li>
-          </ul>
-        </div>
-        <div class="shop-service">
-          <h4>SHOP SERVICE</h4>
-          <ul>
-            <li>Imprint</li>
-            <li>Cookies</li>
-            <li>Privacy Policy</li>
-            <li>Right of withdrawal</li>
-            <li>Terms & Conditions</li>
-          </ul>
-        </div>
-        <div class="support">
-          <h4>SUPPORT</h4>
-          <ul>
-            <li>Contact</li>
-            <li>Returns</li>
-            <li>Shipping</li>
-            <li>Shipping Fingerboard Parks</li>
-            <li>Newsletter</li>
-          </ul>
-        </div>
-        <div class="social">
-          <h4>SOCIAL</h4>
-          <ul>
-            <li>Blog</li>
-            <li>Youtube</li>
-            <li>Instagram</li>
-            <li>Tiktok</li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <div class="logo">
-          <img src="/images/logo-blackriver.png" alt="" />
-        </div>
-        <div>
-          <p>© 2024 Blackriver Fingerboard Shop - All Rights Reserved</p>
-        </div>
-      </div>
-    </footer>
+    <%- include("partials/footer.ejs") %>
   </body>
 </html>

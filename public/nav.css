@@ -1,0 +1,26 @@
+nav {
+  display: flex;
+  column-gap: 2em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+}
+nav .logo img {
+  height: 3em;
+}
+nav .links {
+  display: flex;
+  gap: 1.5em;
+  font-size: 1.2em;
+}
+nav .actions img {
+  height: 2em;
+}
+nav .actions {
+  display: flex;
+  gap: 1.5em;
+}
+nav button {
+  border-style: none;
+  background-color: #13151600;
+}

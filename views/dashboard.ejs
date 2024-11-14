@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="/dashboard.css" />
 
     <script src="/scripts/delete.js" defer></script>
+    <script src="/scripts/modal.js" defer></script>
     <title>Dashboard</title>
   </head>
   <body>
-    <%- include("partials/nav.ejs") %>
+    <%- include("partials/nav.ejs") %> <%- include("partials/itemFormModal.ejs")
+    %>
     <main>
       <aside>
         <h1>Inventory</h1>
@@ -33,21 +35,48 @@
           <% }) %>
         </ul>
       </aside>
-      <div class="items">
-        <% items.forEach(item => { %>
-        <div class="item">
-          <img src="<%=item.image%>" alt="" />
-          <p><%=item.title%></p>
-          <p>$<%=item.price%>*</p>
-          <div class="item-actions">
-            <a href="/dashboard/edit/<%=item.id%>"><button>Edit</button></a>
-            <button onclick="deleteItem('<%= item.id %>')">
-              <img src="/icons/delete.svg" alt="" />
-            </button>
+      <div class="main">
+        <div class="item-nav">
+          <div class="date"><%= new Date().toLocaleString() %></div>
+        </div>
+        <h1>Dashboard</h1>
+        <div class="dashboard">
+          <div class="dashboard-info">
+            <div class="total-categories">
+              <p><%=categories.length%></p>
+              <p>Total Categories</p>
+              <button>More Info</button>
+            </div>
+            <div class="total-items">
+              <h3><%=items.length %></h3>
+              <span>Total Items</span>
+              <button>More Info</button>
+            </div>
+          </div>
+          <div class="dashboard-actions">
+            <button onclick="openModal()">Add Item</button>
+            <button onclick="openModal()">Add Category</button>
           </div>
         </div>
-        <% }) %>
+        <div class="items">
+          <% items.forEach(item => { %>
+          <div class="item">
+            <img src="<%=item.image%>" alt="" />
+            <a href="/category/<%=item.category%>/<%=item.id%>"
+              ><p><%=item.title%></p></a
+            >
+            <p>$<%=item.price%>*</p>
+            <div class="item-actions">
+              <a href="/dashboard/edit/<%=item.id%>"><button>Edit</button></a>
+              <button onclick="deleteItem('<%= item.id %>')">
+                <img src="/icons/delete.svg" alt="" />
+              </button>
+            </div>
+          </div>
+          <% }) %>
+        </div>
       </div>
     </main>
+    <%- include("partials/footer.ejs") %>
   </body>
 </html>

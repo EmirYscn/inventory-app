@@ -1,0 +1,61 @@
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Create New Item</h2>
+    <p>Please enter details of the item</p>
+    <form action="/dashboard/createItem" method="post">
+      <label for="image">Image URL</label>
+      <input name="image" type="text" id="image" />
+      <label for="title">Title</label>
+      <input name="title" type="text" id="title" />
+      <label for="price">Price</label>
+      <input name="price" type="text" id="price" />
+      <label for="category">Category</label>
+      <select name="category" id="category">
+        <% categories.forEach(category => { %>
+        <option value="<%=category.id%>"><%=category.category%></option>
+        <% }) %>
+      </select>
+      <label for="manufacturer">Manufacturer</label>
+      <select name="manufacturer" id="manufacturer">
+        <% manufacturers.forEach(manufacturer => { %>
+        <option value="<%=manufacturer.id%>"><%=manufacturer.name%></option>
+        <% }) %>
+      </select>
+
+      <!-- Conditional Inputs -->
+      <div id="plies-group" class="conditional-input">
+        <label for="plies">Plies</label>
+        <input name="plies" type="text" id="plies" />
+      </div>
+      <div id="concave-group" class="conditional-input">
+        <label for="concave">Concave</label>
+        <input name="concave" type="text" id="concave" />
+      </div>
+      <div id="width-group" class="conditional-input">
+        <label for="width">Width</label>
+        <input name="width" type="text" id="width" />
+      </div>
+      <div id="base-group" class="conditional-input">
+        <label for="base">Base</label>
+        <input name="base" type="text" id="base" />
+      </div>
+      <div id="hanger-group" class="conditional-input">
+        <label for="hanger">Hanger</label>
+        <input name="hanger" type="text" id="hanger" />
+      </div>
+      <div id="wheel-colors-group" class="conditional-input">
+        <label for="wheel_colors">Wheel Colors</label>
+        <input name="wheel_colors" type="text" id="wheel_colors" />
+      </div>
+      <label for="product_number">Product Number</label>
+      <input name="product_number" type="text" id="product_number" />
+      <label for="description">Description</label>
+      <textarea name="description" id="description"></textarea>
+      <div class="modal-actions">
+        <button id="confirm-button" type="submit">Confirm</button>
+        <button id="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

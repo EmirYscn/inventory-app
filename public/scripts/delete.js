@@ -12,3 +12,5 @@ function deleteItem(itemId) {
     })
     .catch((error) => console.error("Error:", error));
 }
+
+new Date().toLocaleString;

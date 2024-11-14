@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/categoryItems.css" />
+    <title></title>
+  </head>
+  <body>
+    <%- include("partials/nav.ejs") %> <%- include("partials/categoryNav.ejs")
+    %>
+    <main>
+      <div class="items">
+        <% items.forEach(item => { %>
+        <div class="item">
+          <img src="<%=item.image%>" alt="" />
+          <p><%=item.title%></p>
+          <p>$<%=item.price%>*</p>
+          <div class="item-actions">
+            <a href="/category/<%=category%>/<%=item.id%>"
+              ><button>Details</button></a
+            >
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </main>
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

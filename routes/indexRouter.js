@@ -4,7 +4,7 @@ const indexController = require("../controllers/indexController");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("index", { message: "hello world" });
+  res.render("index");
 });
 
 router.get(
@@ -12,6 +12,8 @@ router.get(
   indexController.includeAsideProperties,
   indexController.getDashboard
 );
+
+router.post("/dashboard/createItem", indexController.createItem);
 
 router.delete("/dashboard/delete/:id", indexController.deleteItem);
 
@@ -27,6 +29,7 @@ router.get(
   indexController.getManufacturerItems
 );
 
-// router.get("/fingerboards", indexController.getFingerboards);
+router.get("/category/:itemType", indexController.getItemsByCategory);
+router.get("/category/:itemType/:id", indexController.getItem);
 
 module.exports = router;
