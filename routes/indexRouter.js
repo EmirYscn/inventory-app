@@ -14,6 +14,11 @@ router.get(
 );
 
 router.post("/dashboard/createItem", indexController.createItem);
+router.post(
+  "/dashboard/createCategory",
+  indexController.includeAsideProperties,
+  indexController.createCategory
+);
 
 router.delete("/dashboard/delete/:id", indexController.deleteItem);
 

@@ -26,6 +26,7 @@ exports.getCategoryItems = async (req, res, next) => {
 
   try {
     const doc = await db.getCategoryItems(id);
+
     res.render("dashboard", {
       items: doc,
       categories,
@@ -142,6 +143,24 @@ exports.createItem = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
+    });
+  }
+};
+
+exports.createCategory = async (req, res, next) => {
+  const categories = req.categories;
+  const manufacturers = req.manufacturers;
+  try {
+    await db.createCategory(req.body);
+    // Redirect on success
+    return res.redirect("/dashboard");
+  } catch (error) {
+    // Render the dashboard with the error message
+    res.render("dashboard", {
+      categories,
+      manufacturers,
+      items: [],
+      error: error.message,
     });
   }
 };

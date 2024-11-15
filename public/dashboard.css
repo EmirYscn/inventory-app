@@ -68,6 +68,15 @@ main {
   grid-template-columns: auto 1fr;
   gap: 1em;
 }
+main h1 {
+  text-transform: capitalize;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
 
 aside {
   /* padding: 2em; */
@@ -376,4 +385,9 @@ textarea:focus {
 
 .conditional-input {
   display: none; /* Hide by default */
+}
+
+.error-message {
+  color: rgba(255, 0, 0, 0.641);
+  font-size: 2em;
 }

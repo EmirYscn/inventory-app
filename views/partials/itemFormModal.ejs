@@ -1,4 +1,4 @@
-<div id="myModal" class="modal">
+<div id="itemModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Create New Item</h2>
@@ -12,12 +12,14 @@
       <input name="price" type="text" id="price" />
       <label for="category">Category</label>
       <select name="category" id="category">
+        <option value="-">Select Category</option>
         <% categories.forEach(category => { %>
         <option value="<%=category.id%>"><%=category.category%></option>
         <% }) %>
       </select>
       <label for="manufacturer">Manufacturer</label>
       <select name="manufacturer" id="manufacturer">
+        <option value="-">Select Manufacturer</option>
         <% manufacturers.forEach(manufacturer => { %>
         <option value="<%=manufacturer.id%>"><%=manufacturer.name%></option>
         <% }) %>

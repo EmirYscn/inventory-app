@@ -1,20 +1,33 @@
-const modal = document.getElementById("myModal");
-const closeModal = document.getElementsByClassName("close")[0];
+const itemModal = document.getElementById("itemModal");
+const categoryModal = document.getElementById("categoryModal");
+const closeModal = document.querySelectorAll(".close");
 
 // Example trigger function (you can attach this to your buttons)
-function openModal() {
-  modal.style.display = "block";
+function openItemModal() {
+  itemModal.style.display = "block";
+}
+function openCategoryModal() {
+  categoryModal.style.display = "block";
 }
 
 // Close modal when 'x' is clicked
-closeModal.onclick = function () {
-  modal.style.display = "none";
-};
+closeModal.forEach((el) => {
+  el.onclick = function () {
+    categoryModal.style.display = "none";
+    itemModal.style.display = "none";
+  };
+});
+// closeModal.onclick = function () {
+//   categoryModal.style.display = "none";
+//   itemModal.style.display = "none";
+// };
 
 // Close modal when clicking outside of it
 window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
+  console.log(event.target);
+  if (event.target === itemModal || event.target === categoryModal) {
+    itemModal.style.display = "none";
+    categoryModal.style.display = "none";
   }
 };
 

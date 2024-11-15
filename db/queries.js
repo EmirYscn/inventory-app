@@ -15,14 +15,15 @@ exports.getManufacturers = async function () {
 };
 
 exports.getCategoryItems = async function (id) {
-  let query = `SELECT * FROM items WHERE category_id=$1`;
-
+  let query = `SELECT items.*, categories.category FROM items INNER JOIN categories ON categories.id = items.category_id WHERE category_id=$1`;
+  console.log(id);
   const { rows } = await pool.query(query, [id]);
+  console.log(rows);
   return rows;
 };
 
 exports.getManufacturerItems = async function (id) {
-  let query = `SELECT * FROM items WHERE manufacturer_id=$1`;
+  let query = `SELECT items.*, manufacturers.name AS category FROM items INNER JOIN manufacturers ON manufacturers.id=items.manufacturer_id WHERE manufacturer_id=$1`;
 
   const { rows } = await pool.query(query, [id]);
   return rows;
@@ -111,5 +112,27 @@ exports.createItem = async function (item) {
     ]);
   } catch (error) {
     console.error("Database query failed: ", error);
+  }
+};
+
+exports.createCategory = async function (body) {
+  let { name } = body;
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  let query = "INSERT INTO categories (category) VALUES ($1)";
+
+  try {
+    // check first if name is already in category db;
+    const { rows } = await pool.query(
+      "SELECT * FROM categories WHERE LOWER(category) = LOWER($1)",
+      [name]
+    );
+
+    if (rows.length > 0) {
+      throw new Error("There is already a category with that name");
+    }
+
+    await pool.query(query, [name]);
+  } catch (error) {
+    throw error;
   }
 };
