@@ -1,5 +1,6 @@
 const itemModal = document.getElementById("itemModal");
 const categoryModal = document.getElementById("categoryModal");
+const editItemModal = document.getElementById("editItemModal");
 const closeModal = document.querySelectorAll(".close");
 
 // Example trigger function (you can attach this to your buttons)
@@ -15,6 +16,7 @@ closeModal.forEach((el) => {
   el.onclick = function () {
     categoryModal.style.display = "none";
     itemModal.style.display = "none";
+    editItemModal.style.display = "none";
   };
 });
 // closeModal.onclick = function () {
@@ -28,6 +30,7 @@ window.onclick = function (event) {
   if (event.target === itemModal || event.target === categoryModal) {
     itemModal.style.display = "none";
     categoryModal.style.display = "none";
+    editItemModal.style.display = "none";
   }
 };
 

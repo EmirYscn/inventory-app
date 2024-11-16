@@ -23,6 +23,13 @@ router.post(
 router.delete("/dashboard/delete/:id", indexController.deleteItem);
 
 router.get(
+  "/dashboard/edit/:id",
+  indexController.includeAsideProperties,
+  indexController.getUpdateItem
+);
+router.patch("/dashboard/edit/:id", indexController.updateItem);
+
+router.get(
   "/dashboard/category/:id",
   indexController.includeAsideProperties,
   indexController.getCategoryItems

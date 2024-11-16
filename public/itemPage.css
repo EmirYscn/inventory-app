@@ -114,6 +114,7 @@ main .item-info {
 
 .option-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
 }
 

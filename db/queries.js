@@ -46,16 +46,15 @@ exports.getItems = async function (categoryFilter = null) {
     query += ` WHERE category_id=$1`;
     queryParams.push(categoryResult.rows[0].id);
   }
-  console.log(query);
-  console.log(queryParams);
+
   const { rows } = await pool.query(query, queryParams);
-  console.log(rows);
+
   return rows;
 };
 
 exports.getItem = async function (id) {
   let query =
-    "SELECT * from items INNER JOIN manufacturers ON manufacturers.id = items.manufacturer_id WHERE items.id = $1";
+    "SELECT items.id AS item_id, items.*, manufacturers.id AS manufacturer_id, manufacturers.name FROM items INNER JOIN manufacturers ON manufacturers.id = items.manufacturer_id WHERE items.id = $1";
 
   const { rows } = await pool.query(query, [id]);
   return rows;
@@ -134,5 +133,64 @@ exports.createCategory = async function (body) {
     await pool.query(query, [name]);
   } catch (error) {
     throw error;
+  }
+};
+
+exports.updateItem = async function (id, body) {
+  let {
+    image,
+    title,
+    price,
+    plies,
+    concave,
+    width,
+    base,
+    hanger,
+    wheel_colors,
+    product_number,
+    description,
+    category_id,
+    manufacturer_id,
+  } = body;
+  console.log(plies);
+  // // Ensure all options are properly split into arrays
+  const optionGroups = [plies, concave, width, base, hanger, wheel_colors].map(
+    (opt) => (opt ? opt.split(",") : null)
+  );
+  // // Destructure the transformed option groups
+
+  [plies, concave, width, base, hanger, wheel_colors] = optionGroups;
+  optionGroups.forEach((option) => {
+    console.log(option);
+  });
+
+  const replacements = {
+    plies,
+    concave,
+    width,
+    base,
+    hanger,
+    wheel_colors,
+  };
+
+  Object.keys(replacements).forEach((key) => {
+    if (body.hasOwnProperty(key)) {
+      body[key] = replacements[key];
+    }
+  });
+
+  try {
+    const keys = Object.keys(body);
+    const setClause = keys
+      .map((key, index) => `${key} = $${index + 1}`)
+      .join(", ");
+
+    const query = `UPDATE items SET ${setClause} WHERE id = $${
+      keys.length + 1
+    };`;
+    const params = [...Object.values(body), id * 1];
+    await pool.query(query, params);
+  } catch (error) {
+    console.error("Database query failed: ", error);
   }
 };

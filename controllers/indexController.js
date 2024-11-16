@@ -120,11 +120,16 @@ exports.getItem = async (req, res, next) => {
 
     optionChoices.forEach((element) => {
       if (doc[element] !== null) {
-        doc["options"].push({ optionType: element, choices: doc[element] });
+        if (element === "wheel_colors") {
+          doc["options"].push({
+            optionType: "wheel colors",
+            choices: doc[element],
+          });
+        } else {
+          doc["options"].push({ optionType: element, choices: doc[element] });
+        }
       }
     });
-
-    console.log(doc);
     res.render("itemPage", {
       item: doc,
       routes: [itemType, doc.title],
@@ -161,6 +166,38 @@ exports.createCategory = async (req, res, next) => {
       manufacturers,
       items: [],
       error: error.message,
+    });
+  }
+};
+
+exports.getUpdateItem = async (req, res, next) => {
+  const { id } = req.params;
+  const categories = req.categories;
+  const manufacturers = req.manufacturers;
+  try {
+    const doc = await db.getItem(id);
+
+    res.render("dashboard", {
+      item: doc[0],
+      categories,
+      manufacturers,
+      showModal: true,
+      items: [],
+    });
+  } catch (error) {
+    console.log("error");
+  }
+};
+
+exports.updateItem = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await db.updateItem(id, req.body);
+    res.redirect("/dashboard");
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      data: error,
     });
   }
 };

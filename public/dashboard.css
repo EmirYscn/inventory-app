@@ -391,3 +391,7 @@ textarea:focus {
   color: rgba(255, 0, 0, 0.641);
   font-size: 2em;
 }
+
+#editItemModal {
+  display: block;
+}

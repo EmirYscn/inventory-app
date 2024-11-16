@@ -1,0 +1,84 @@
+<% if (locals.item !== undefined && item && locals.showModal) { %>
+
+<div id="editItemModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Update Item</h2>
+    <p>Please enter details of the item</p>
+    <form action="/dashboard/edit/<%=item.id%>/?_method=PATCH" method="post">
+      <label for="image">Image URL</label>
+      <input
+        name="image"
+        type="text"
+        id="image"
+        value="<%=item.image%>"
+      />
+      <label for="title">Title</label>
+      <input
+        name="title"
+        type="text"
+        id="title"
+        value="<%=item.title%>"
+      />
+      <label for="price">Price</label>
+      <input
+        name="price"
+        type="text"
+        id="price"
+        value="<%=item.price%>"
+      />
+      <label for="category_id">Category</label>
+      <select name="category_id" id="category">
+        <option value="-">Select Category</option>
+        <% categories.forEach(category => { %>
+          <option value="<%= category.id %>" <% if (String(item.category_id) === String(category.id)) { %> selected <% } %>>
+            <%= category.category %>
+          </option>
+        <% }) %>
+      </select>
+      <label for="manufacturer_id">Manufacturer</label>
+      <select name="manufacturer_id" id="manufacturer">
+        <option value="-">Select Manufacturer</option>
+        <% manufacturers.forEach(manufacturer => { %>
+        <option value="<%=manufacturer.id%>" <% if (item.manufacturer_id === manufacturer.id) { %> selected <% } %>>
+          <%=manufacturer.name%>
+        </option>
+        <% }) %>
+      </select>
+
+      <% if (item.plies !== null) { %>
+        <label for="plies">Plies</label>
+        <input name="plies" type="text" id="plies" value="<%=item.plies%>"/>
+      <% } %>
+      <% if (item.concave !== null) { %>
+        <label for="concave">Plies</label>
+        <input name="concave" type="text" id="concave" value="<%=item.concave%>"/>
+      <% } %>
+      <% if (item.width !== null) { %>
+        <label for="width">Width</label>
+        <input name="width" type="text" id="width" value="<%=item.width%>"/>
+      <% } %>
+      <% if (item.base !== null) { %>
+        <label for="base">Base</label>
+        <input name="base" type="text" id="base" value="<%=item.base%>"/>
+      <% } %>
+      <% if (item.hanger !== null) { %>
+        <label for="hanger">Hanger</label>
+        <input name="hanger" type="text" id="hanger" value="<%=item.hanger%>"/>
+      <% } %>
+      <% if (item.wheel_colors !== null) { %>
+        <label for="wheel_colors">Wheel Colors</label>
+        <input name="wheel_colors" type="text" id="wheel_colors" value="<%=item.wheel_colors%>"/>
+      <% } %>
+     
+      <label for="product_number">Product Number</label>
+      <input name="product_number" type="text" id="product_number" value="<%=item.product_number%>"/>
+      <label for="description">Description</label>
+      <textarea name="description" id="description"><%=item.description%></textarea>
+      <div class="modal-actions">
+        <button id="confirm-button" type="submit">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div>
+<% } %>
