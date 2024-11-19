@@ -23,7 +23,8 @@
         <ul>
           <% categories.forEach(category => { %>
           <a href="/dashboard/category/<%=category.id%>">
-            <li><%= category.category %></li>
+            <li><%= category.category %> <button onclick="deleteCategory(event, '<%=category.id%>')">&times;</button></li>
+            
           </a>
           <% }) %>
         </ul>
@@ -67,7 +68,7 @@
           <% items.forEach(item => { %>
           <div class="item">
             <img src="<%=item.image%>" alt="" />
-            <a href="/category/<%=item.category%>/<%=item.id%>"
+            <a href="/shop/category/<%=item.category%>/<%=item.id%>"
               ><p><%=item.title%></p></a
             >
             <p>$<%=item.price%>*</p>

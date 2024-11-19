@@ -104,7 +104,6 @@ exports.getItemsByCategory = async (req, res, next) => {
 
 exports.getItem = async (req, res, next) => {
   const { itemType, id } = req.params;
-  console.log(itemType, id);
   try {
     let doc = await db.getItem(id);
     doc = doc[0];
@@ -193,6 +192,19 @@ exports.updateItem = async (req, res, next) => {
   const { id } = req.params;
   try {
     await db.updateItem(id, req.body);
+    res.redirect("/dashboard");
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      data: error,
+    });
+  }
+};
+
+exports.deleteCategory = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await db.deleteCategory(id * 1);
     res.redirect("/dashboard");
   } catch (error) {
     res.status(500).json({

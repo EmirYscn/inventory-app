@@ -395,3 +395,18 @@ textarea:focus {
 #editItemModal {
   display: block;
 }
+
+aside button {
+  border: none;
+  background-color: #00000000;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+aside ul li {
+  display: flex;
+  justify-content: space-between;
+}
+/* aside ul li button {
+  margin-left: auto;
+} */

@@ -16,9 +16,9 @@ exports.getManufacturers = async function () {
 
 exports.getCategoryItems = async function (id) {
   let query = `SELECT items.*, categories.category FROM items INNER JOIN categories ON categories.id = items.category_id WHERE category_id=$1`;
-  console.log(id);
+
   const { rows } = await pool.query(query, [id]);
-  console.log(rows);
+
   return rows;
 };
 
@@ -61,7 +61,7 @@ exports.getItem = async function (id) {
 };
 
 exports.createItem = async function (item) {
-  console.log(item);
+  // console.log(item);
   let {
     image,
     title,
@@ -152,7 +152,7 @@ exports.updateItem = async function (id, body) {
     category_id,
     manufacturer_id,
   } = body;
-  console.log(plies);
+
   // // Ensure all options are properly split into arrays
   const optionGroups = [plies, concave, width, base, hanger, wheel_colors].map(
     (opt) => (opt ? opt.split(",") : null)
@@ -193,4 +193,11 @@ exports.updateItem = async function (id, body) {
   } catch (error) {
     console.error("Database query failed: ", error);
   }
+};
+
+exports.deleteCategory = async function (id) {
+  let query = `DELETE FROM categories WHERE id=$1`;
+  await pool.query(query, [id]);
+  // query = `UPDATE items SET category_id = null WHERE items.category_id=$1`;
+  // await pool.query(query, [id]);
 };

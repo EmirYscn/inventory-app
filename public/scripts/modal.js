@@ -26,8 +26,11 @@ closeModal.forEach((el) => {
 
 // Close modal when clicking outside of it
 window.onclick = function (event) {
-  console.log(event.target);
-  if (event.target === itemModal || event.target === categoryModal) {
+  if (
+    event.target === itemModal ||
+    event.target === categoryModal ||
+    event.target === editItemModal
+  ) {
     itemModal.style.display = "none";
     categoryModal.style.display = "none";
     editItemModal.style.display = "none";
