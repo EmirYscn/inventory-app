@@ -28,7 +28,7 @@ exports.login = (req, res, next) => {
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.cookies.status)) {
-      return;
+      return res.redirect("/dashboard");
     }
     next();
   };

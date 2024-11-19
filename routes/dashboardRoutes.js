@@ -23,7 +23,11 @@ router.delete(
 );
 
 router.get("/edit/:id", indexController.getUpdateItem);
-router.patch("/edit/:id", indexController.updateItem);
+router.patch(
+  "/edit/:id",
+  authController.restrictTo("admin"),
+  indexController.updateItem
+);
 
 router.get("/category/uncategorized", indexController.getUncategorizedItems);
 router.get("/category/:id", indexController.getCategoryItems);
