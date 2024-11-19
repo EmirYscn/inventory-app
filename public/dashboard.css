@@ -111,6 +111,12 @@ aside ul li {
 aside ul li:hover {
   background-color: rgba(255, 255, 255, 0.312);
 }
+aside ul li button {
+  transition: all 0.2s;
+}
+aside ul li button:hover {
+  transform: scale(1.2);
+}
 
 .item-nav {
   padding: 2em;

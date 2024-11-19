@@ -24,9 +24,11 @@
           <% categories.forEach(category => { %>
           <a href="/dashboard/category/<%=category.id%>">
             <li><%= category.category %> <button onclick="deleteCategory(event, '<%=category.id%>')">&times;</button></li>
-            
           </a>
           <% }) %>
+          <a href="/dashboard/category/uncategorized">
+            <li>Uncategorized</li>
+          </a>
         </ul>
         <h2>Manufacturers</h2>
         <ul>
@@ -60,7 +62,7 @@
             <button onclick="openCategoryModal()">Add Category</button>
           </div>
         </div>
-        <h1><%=items[0]?.category%></h1>
+        <h1><%=items[0]?.category || 'Uncategorized'%></h1>
         <% if (locals.error !== undefined) { %>
         <p class="error-message">*<%=error %></p>
         <% } %>

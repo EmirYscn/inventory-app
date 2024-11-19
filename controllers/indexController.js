@@ -43,6 +43,29 @@ exports.getCategoryItems = async (req, res, next) => {
   }
 };
 
+exports.getUncategorizedItems = async (req, res, next) => {
+  const categories = req.categories;
+  const manufacturers = req.manufacturers;
+
+  try {
+    const doc = await db.getCategoryItems();
+
+    res.render("dashboard", {
+      items: doc,
+      categories,
+      manufacturers,
+    });
+  } catch (error) {
+    console.error("Error fetching category items:", error);
+    res.status(500).json({
+      status: "fail",
+      data: {
+        data: doc,
+      },
+    });
+  }
+};
+
 exports.getManufacturerItems = async (req, res, next) => {
   const { id } = req.params;
 

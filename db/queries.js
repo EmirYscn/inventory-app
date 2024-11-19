@@ -14,24 +14,36 @@ exports.getManufacturers = async function () {
   return rows;
 };
 
-exports.getCategoryItems = async function (id) {
-  let query = `SELECT items.*, categories.category FROM items INNER JOIN categories ON categories.id = items.category_id WHERE category_id=$1`;
+exports.getCategoryItems = async function (categoryId = null) {
+  // Validate categoryId (ensure it's either a number or null)
+  if (categoryId !== null && isNaN(categoryId)) {
+    // If the categoryId is not a valid number, set it to null or handle the error
+    console.error("Invalid categoryId:", categoryId);
+    categoryId = null;
+  }
 
-  const { rows } = await pool.query(query, [id]);
-
+  const query = `
+  SELECT items.*, categories.category
+  FROM items
+  LEFT JOIN categories ON categories.id = items.category_id
+  WHERE ($1::INTEGER IS NULL AND items.category_id IS NULL)
+     OR ($1::INTEGER IS NOT NULL AND items.category_id = $1)
+`;
+  const { rows } = await pool.query(query, [categoryId]);
+  console.log(rows);
   return rows;
 };
 
-exports.getManufacturerItems = async function (id) {
+exports.getManufacturerItems = async function (manufacturerId) {
   let query = `SELECT items.*, manufacturers.name AS category FROM items INNER JOIN manufacturers ON manufacturers.id=items.manufacturer_id WHERE manufacturer_id=$1`;
 
-  const { rows } = await pool.query(query, [id]);
+  const { rows } = await pool.query(query, [manufacturerId]);
   return rows;
 };
 
-exports.deleteItem = async function (id) {
+exports.deleteItem = async function (itemId) {
   let query = `DELETE FROM items WHERE id=$1`;
-  await pool.query(query, [id]);
+  await pool.query(query, [itemId]);
 };
 
 exports.getItems = async function (categoryFilter = null) {
@@ -52,11 +64,11 @@ exports.getItems = async function (categoryFilter = null) {
   return rows;
 };
 
-exports.getItem = async function (id) {
+exports.getItem = async function (itemId) {
   let query =
     "SELECT items.id AS item_id, items.*, manufacturers.id AS manufacturer_id, manufacturers.name FROM items INNER JOIN manufacturers ON manufacturers.id = items.manufacturer_id WHERE items.id = $1";
 
-  const { rows } = await pool.query(query, [id]);
+  const { rows } = await pool.query(query, [itemId]);
   return rows;
 };
 
@@ -136,7 +148,7 @@ exports.createCategory = async function (body) {
   }
 };
 
-exports.updateItem = async function (id, body) {
+exports.updateItem = async function (itemId, body) {
   let {
     image,
     title,
@@ -152,7 +164,6 @@ exports.updateItem = async function (id, body) {
     category_id,
     manufacturer_id,
   } = body;
-
   // // Ensure all options are properly split into arrays
   const optionGroups = [plies, concave, width, base, hanger, wheel_colors].map(
     (opt) => (opt ? opt.split(",") : null)
@@ -188,7 +199,7 @@ exports.updateItem = async function (id, body) {
     const query = `UPDATE items SET ${setClause} WHERE id = $${
       keys.length + 1
     };`;
-    const params = [...Object.values(body), id * 1];
+    const params = [...Object.values(body), itemId * 1];
     await pool.query(query, params);
   } catch (error) {
     console.error("Database query failed: ", error);
