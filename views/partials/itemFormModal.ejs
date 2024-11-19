@@ -11,15 +11,15 @@
       <label for="price">Price</label>
       <input name="price" type="text" id="price" />
       <label for="category">Category</label>
-      <select name="category" id="category">
-        <option value="-">Select Category</option>
+      <select name="category" id="category" required>
+        <option value="" selected disabled>Select Category</option>
         <% categories.forEach(category => { %>
         <option value="<%=category.id%>"><%=category.category%></option>
         <% }) %>
       </select>
       <label for="manufacturer">Manufacturer</label>
-      <select name="manufacturer" id="manufacturer">
-        <option value="-">Select Manufacturer</option>
+      <select name="manufacturer" id="manufacturer" required>
+        <option value="" selected disabled>Select Manufacturer</option>
         <% manufacturers.forEach(manufacturer => { %>
         <option value="<%=manufacturer.id%>"><%=manufacturer.name%></option>
         <% }) %>

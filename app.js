@@ -18,6 +18,7 @@ app.set("view engine", "ejs");
 // app middleware to use form body in post router
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(cookieParser());
 
 // set router

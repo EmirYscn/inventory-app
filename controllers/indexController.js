@@ -8,7 +8,6 @@ exports.includeAsideProperties = async (req, res, next) => {
   next();
 };
 exports.getDashboard = async (req, res, next) => {
-  // LATER AUTHENTICATE ADMIN
   const items = await db.getItems();
   const categories = req.categories;
   const manufacturers = req.manufacturers;
@@ -25,7 +24,7 @@ exports.getCategoryItems = async (req, res, next) => {
   const manufacturers = req.manufacturers;
 
   try {
-    const doc = await db.getCategoryItems(id);
+    const doc = await db.getCategoryItems(id * 1);
 
     res.render("dashboard", {
       items: doc,
@@ -112,12 +111,6 @@ exports.getItemsByCategory = async (req, res, next) => {
       category: itemType,
       routes: [itemType],
     });
-    // res.status(200).json({
-    //   status: "success",
-    //   data: {
-    //     data: doc,
-    //   },
-    // });
   } catch (error) {
     res.status(500).json({
       status: "fail",

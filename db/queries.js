@@ -15,10 +15,11 @@ exports.getManufacturers = async function () {
 };
 
 exports.getCategoryItems = async function (categoryId = null) {
+  console.log(categoryId);
   // Validate categoryId (ensure it's either a number or null)
   if (categoryId !== null && isNaN(categoryId)) {
     // If the categoryId is not a valid number, set it to null or handle the error
-    console.error("Invalid categoryId:", categoryId);
+    // console.error("Invalid categoryId:", categoryId);
     categoryId = null;
   }
 
@@ -30,7 +31,6 @@ exports.getCategoryItems = async function (categoryId = null) {
      OR ($1::INTEGER IS NOT NULL AND items.category_id = $1)
 `;
   const { rows } = await pool.query(query, [categoryId]);
-  console.log(rows);
   return rows;
 };
 
@@ -73,7 +73,6 @@ exports.getItem = async function (itemId) {
 };
 
 exports.createItem = async function (item) {
-  // console.log(item);
   let {
     image,
     title,
@@ -98,9 +97,9 @@ exports.createItem = async function (item) {
   // Destructure the transformed option groups
   [plies, concave, width, base, hanger, wheel_colors] = optionGroups;
 
-  optionGroups.forEach((option) => {
-    console.log(option);
-  });
+  // optionGroups.forEach((option) => {
+  //   console.log(option);
+  // });
 
   try {
     let query =
@@ -171,9 +170,9 @@ exports.updateItem = async function (itemId, body) {
   // // Destructure the transformed option groups
 
   [plies, concave, width, base, hanger, wheel_colors] = optionGroups;
-  optionGroups.forEach((option) => {
-    console.log(option);
-  });
+  // optionGroups.forEach((option) => {
+  //   console.log(option);
+  // });
 
   const replacements = {
     plies,

@@ -2,6 +2,7 @@ const itemModal = document.getElementById("itemModal");
 const categoryModal = document.getElementById("categoryModal");
 const editItemModal = document.getElementById("editItemModal");
 const closeModal = document.querySelectorAll(".close");
+const cancelButton = document.querySelectorAll("#cancel-button");
 
 // Example trigger function (you can attach this to your buttons)
 function openItemModal() {
@@ -19,10 +20,15 @@ closeModal.forEach((el) => {
     editItemModal.style.display = "none";
   };
 });
-// closeModal.onclick = function () {
-//   categoryModal.style.display = "none";
-//   itemModal.style.display = "none";
-// };
+
+cancelButton.forEach((el) => {
+  el.onclick = function (e) {
+    e.preventDefault();
+    categoryModal.style.display = "none";
+    itemModal.style.display = "none";
+    editItemModal.style.display = "none";
+  };
+});
 
 // Close modal when clicking outside of it
 window.onclick = function (event) {
